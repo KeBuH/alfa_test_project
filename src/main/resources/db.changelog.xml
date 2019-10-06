@@ -1,0 +1,31 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="a.tretyakov" id="29.09.2019:15.37">
+        <createTable schemaName="public"
+                     tableName="BOX">
+            <column name="ID" type="INTEGER">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="CONTAINED_IN" type="INTEGER"/>
+        </createTable>
+        <createTable schemaName="public"
+                     tableName="ITEM">
+            <column name="ID" type="INTEGER">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="CONTAINED_IN" type="INTEGER">
+                <constraints nullable="false"
+                             foreignKeyName="CONTAINED_IN"
+                             references="BOX(ID)"/>
+            </column>
+            <column name="COLOR" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
